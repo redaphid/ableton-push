@@ -1,0 +1,42 @@
+{
+  "name": "meshblu-ableton-push",
+  "version": "1.0.0",
+  "description": "Interface with the Ableton Push in Meshblu!",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover _mocha -- -R spec --require coffee-coverage/register-istanbul",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redaphid/meshblu-ableton-push.git"
+  },
+  "keywords": [
+    "Meshblu",
+    "IoT",
+    "Octoblu",
+    "Ableton"
+  ],
+  "author": "redaphid",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redaphid/meshblu-ableton-push/issues"
+  },
+  "homepage": "https://github.com/redaphid/meshblu-ableton-push#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coffee-coverage": "^1.0.1",
+    "coffee-script": "^1.12.2",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-istanbul": "^0.3.0",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.2",
+    "midi": "^0.9.5",
+    "push-wrapper": "^1.1.0",
+    "web-midi-api": "^1.4.4"
+  }
+}
