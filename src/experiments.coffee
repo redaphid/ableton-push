@@ -17,8 +17,8 @@ ableton = new Ableton config
 
 green = {r: 0, g: 255, b: 0}
 
-ableton.on 'button', ({x,y,color}) =>
-  console.log({x,y,color})
-  ableton.setButtonColor {x,y, color: green}
+ableton.on 'button', ({x,y,velocity,color}) =>
+  console.log({x,y,velocity,color})
+  ableton.setButtonColor {x,y, color: {r: 0, g: velocity*2, b: 0}}
 
 ableton.connect()

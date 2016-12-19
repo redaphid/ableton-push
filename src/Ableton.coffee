@@ -12,6 +12,12 @@ class Ableton extends EventEmitter
     @pushWrapper = new PushWrapper send: (bytes) => @midiOutput.sendMessage(bytes)
 
     @midiInput.on 'message', (deltaTime, message) =>
+      firstByte = _.first message
+      if firstByte != 208
+        @lastMessage = message
+      else
+        message = [@lastMessage[0], @lastMessage[1], _.last message]
+              
       @pushWrapper.receive_midi message
 
     @midiInput.openPort 0
@@ -23,8 +29,6 @@ class Ableton extends EventEmitter
       for y in [1...9]
         @_setupButton({x,y})
 
-
-    console.log @buttons
     @_setButtonColors()
 
 
@@ -42,10 +46,15 @@ class Ableton extends EventEmitter
 
   _setupButton: ({x,y}) =>
     @pushWrapper.grid.x[x].y[y].led_rgb(0,0,0)
-    @pushWrapper.grid.x[x].y[y].on 'pressed', (velocity) =>
-      message = {x,y, velocity}
-      buttonConfig = _.find @buttons, {x,y}
-      message.color = buttonConfig.color if buttonConfig?
-      @emit 'button', message
+    @pushWrapper.grid.x[x].y[y].on 'pressed', (velocity) => @_onPressed {x,y,velocity}
+    @pushWrapper.grid.x[x].y[y].on 'released', (velocity) => @_onPressed {x,y,velocity}
+    @pushWrapper.grid.x[x].y[y].on 'aftertouch', (velocity) => @_onPressed {x,y,velocity}
+
+  _onPressed: ({x,y,velocity}) =>
+    message = {x,y, velocity}
+    buttonConfig = _.find @buttons, {x,y}
+    message.color = buttonConfig.color if buttonConfig?
+    @emit 'button', message
+
 
 module.exports = Ableton
