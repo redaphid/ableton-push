@@ -1,2 +1,2 @@
 require('coffee-script/register')
-module.exports = require('./src/experiments')
+module.exports = require('./src/Ableton')

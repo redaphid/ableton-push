@@ -1,15 +1,15 @@
 {
-  "name": "meshblu-ableton-push",
+  "name": "ableton-push",
   "version": "1.0.0",
   "description": "Interface with the Ableton Push in Meshblu!",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover _mocha -- -R spec --require coffee-coverage/register-istanbul",
-    "start": "node index.js"
+    "start": "node experiments.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/redaphid/meshblu-ableton-push.git"
+    "url": "git+https://github.com/redaphid/ableton-push.git"
   },
   "keywords": [
     "Meshblu",
@@ -20,9 +20,9 @@
   "author": "redaphid",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/redaphid/meshblu-ableton-push/issues"
+    "url": "https://github.com/redaphid/ableton-push/issues"
   },
-  "homepage": "https://github.com/redaphid/meshblu-ableton-push#readme",
+  "homepage": "https://github.com/redaphid/ableton-push#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "coffee-coverage": "^1.0.1",

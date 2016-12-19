@@ -1,8 +1,33 @@
-# meshblu-ableton-push
-Interface with the Ableton Push in Meshblu!
+# ableton-push
+A dead-simple interface to Ableton Push in node. Outputs color info as well as the button pushed.
 
-[![Build Status](https://travis-ci.org/octoblu/.svg?branch=master)](https://travis-ci.org/octoblu/)
-[![Code Climate](https://codeclimate.com/github/octoblu//badges/gpa.svg)](https://codeclimate.com/github/octoblu/)
-[![Test Coverage](https://codeclimate.com/github/octoblu//badges/coverage.svg)](https://codeclimate.com/github/octoblu/)
-[![npm version](https://badge.fury.io/js/.svg)](http://badge.fury.io/js/)
-[![Gitter](https://badges.gitter.im/octoblu/help.svg)](https://gitter.im/octoblu/help)
+
+Example code (please excuse the Coffeescript):
+
+```
+Ableton = require 'ableton-push'
+
+config =
+  buttons: [
+    {
+      x:1
+      y:1
+      color:
+        r: 255
+        g: 0
+        b: 0
+      }
+  ]
+
+console.log config
+ableton = new Ableton config
+
+green = {r: 0, g: 255, b: 0}
+
+ableton.on 'button', ({x,y,color}) =>
+  console.log({x,y,color})
+  ableton.setButtonColor {x,y, color: green}
+
+ableton.connect()
+
+```
