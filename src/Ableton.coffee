@@ -17,7 +17,7 @@ class Ableton extends EventEmitter
         @lastMessage = message
       else
         message = [@lastMessage[0], @lastMessage[1], _.last message]
-              
+
       @pushWrapper.receive_midi message
 
     @midiInput.openPort 0
@@ -33,7 +33,7 @@ class Ableton extends EventEmitter
 
 
   setButtonColor:({x,y,color}) =>
-    @buttons = _.reject @buttons, {x,y,color}
+    @buttons = _.reject @buttons, {x,y}
     @buttons.push {x,y,color}
     @_setButtonColors()
 
