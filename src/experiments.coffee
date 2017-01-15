@@ -1,5 +1,6 @@
 Ableton = require '..'
-_ = require 'lodash'
+_       = require 'lodash'
+
 config =
   buttons: [
     {
@@ -26,8 +27,6 @@ config =
 
 console.log config
 ableton = new Ableton config
-
-green = {r: 0, g: 255, b: 0}
 
 ableton.on 'button', ({x,y,velocity,color}) =>
   console.log({x,y,velocity,color})
