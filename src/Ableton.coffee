@@ -2,7 +2,7 @@ _              = require 'lodash'
 PushWrapper    = require 'push-wrapper'
 midi           = require 'midi'
 {EventEmitter} = require 'events'
-
+tinycolor      = require 'tinycolor2'
 class Ableton extends EventEmitter
   constructor: ({@buttons=[]}={}) ->
   connect: =>
@@ -41,7 +41,7 @@ class Ableton extends EventEmitter
     _.each @buttons, @_setButtonColor
 
   _setButtonColor:({x,y,color}) =>
-    {r,g,b} = color || {}
+    {r,g,b} = tinycolor(color).toRgb()
     @pushWrapper.grid.x[x].y[y].led_rgb(r,g,b)
 
   _setupButton: ({x,y}) =>
