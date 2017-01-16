@@ -3,8 +3,10 @@ PushWrapper    = require 'push-wrapper'
 midi           = require 'midi'
 {EventEmitter} = require 'events'
 tinycolor      = require 'tinycolor2'
+
 class Ableton extends EventEmitter
   constructor: ({@buttons=[]}={}) ->
+
   connect: =>
     @midiInput = new midi.input()
     @midiOutput = new midi.output()
@@ -32,15 +34,19 @@ class Ableton extends EventEmitter
     @_setButtonColors()
 
 
-  setButtonColor:({x,y,color}) =>
+  setButtonColors: (@buttons=[]) => @_setButtonColors()
+
+  setButtonColor: ({x,y,color}={}) =>
+    console.log {x,y,color}
     @buttons = _.reject @buttons, {x,y}
     @buttons.push {x,y,color}
     @_setButtonColors()
 
   _setButtonColors: =>
+    console.log 'hi', @buttons
     _.each @buttons, @_setButtonColor
 
-  _setButtonColor:({x,y,color}) =>
+  _setButtonColor:({x,y,color}={}) =>
     {r,g,b} = tinycolor(color).toRgb()
     @pushWrapper.grid.x[x].y[y].led_rgb(r,g,b)
 
